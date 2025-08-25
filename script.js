@@ -142,130 +142,250 @@ const cryptoCards = [
     }
 ];
 
-// DOM Elements
-const cardsContainer = document.getElementById('cards-container');
-const cardTypeFilter = document.getElementById('card-type');
-const rewardTypeFilter = document.getElementById('reward-type');
-const annualFeeFilter = document.getElementById('annual-fee');
+// DOM Elements - with null checks
+let cardsContainer, cardTypeFilter, rewardTypeFilter, annualFeeFilter, navToggle, navMenu;
+
+function initializeDOMElements() {
+    cardsContainer = document.getElementById('cards-container');
+    cardTypeFilter = document.getElementById('card-type');
+    rewardTypeFilter = document.getElementById('reward-type');
+    annualFeeFilter = document.getElementById('annual-fee');
+    navToggle = document.querySelector('.nav-toggle');
+    navMenu = document.querySelector('.nav-menu');
+    
+    // Validate required elements exist
+    if (!cardsContainer) {
+        console.error('Cards container element not found');
+        return false;
+    }
+    return true;
+}
 
 // Initialize the page
 document.addEventListener('DOMContentLoaded', function() {
-    renderCards(cryptoCards);
-    setupFilters();
-    addAnimations();
+    try {
+        if (!initializeDOMElements()) {
+            console.error('Failed to initialize DOM elements');
+            return;
+        }
+        
+        renderCards(cryptoCards);
+        setupFilters();
+        setupMobileNavigation();
+        addAnimations();
+    } catch (error) {
+        console.error('Error initializing page:', error);
+    }
 });
 
 // Render cards to the DOM
 function renderCards(cards) {
-    cardsContainer.innerHTML = '';
+    if (!cardsContainer) {
+        console.error('Cards container not available');
+        return;
+    }
     
-    cards.forEach(card => {
-        const cardElement = createCardElement(card);
-        cardsContainer.appendChild(cardElement);
-    });
+    if (!Array.isArray(cards)) {
+        console.error('Invalid cards data provided');
+        return;
+    }
     
-    // Add fade-in animation to new cards
-    const cardElements = cardsContainer.querySelectorAll('.card');
-    cardElements.forEach((card, index) => {
-        setTimeout(() => {
-            card.classList.add('fade-in');
-        }, index * 100);
-    });
+    try {
+        cardsContainer.innerHTML = '';
+        
+        if (cards.length === 0) {
+            cardsContainer.innerHTML = '<div class="no-results"><p>No cards match your current filters. Try adjusting your search criteria.</p></div>';
+            return;
+        }
+        
+        cards.forEach((card, index) => {
+            try {
+                const cardElement = createCardElement(card);
+                cardsContainer.appendChild(cardElement);
+            } catch (error) {
+                console.error(`Error creating card element for card ${index}:`, error);
+            }
+        });
+        
+        // Add fade-in animation to new cards
+        const cardElements = cardsContainer.querySelectorAll('.card');
+        cardElements.forEach((card, index) => {
+            setTimeout(() => {
+                if (card) card.classList.add('fade-in');
+            }, index * 100);
+        });
+    } catch (error) {
+        console.error('Error rendering cards:', error);
+        cardsContainer.innerHTML = '<div class="error-message"><p>Unable to load cards. Please refresh the page.</p></div>';
+    }
 }
 
 // Create individual card element
 function createCardElement(card) {
+    if (!card || typeof card !== 'object') {
+        throw new Error('Invalid card data provided');
+    }
+    
     const cardDiv = document.createElement('div');
     cardDiv.className = 'card';
-    cardDiv.dataset.type = card.type;
-    cardDiv.dataset.rewardType = card.rewardType;
-    cardDiv.dataset.annualFee = card.annualFee;
+    cardDiv.setAttribute('role', 'article');
+    cardDiv.setAttribute('aria-labelledby', `card-title-${card.id}`);
     
-    const stars = '★'.repeat(Math.floor(card.rating)) + '☆'.repeat(5 - Math.floor(card.rating));
+    // Safely set data attributes
+    cardDiv.dataset.type = card.type || '';
+    cardDiv.dataset.rewardType = card.rewardType || '';
+    cardDiv.dataset.annualFee = card.annualFee || 0;
+    
+    // Generate rating stars safely
+    const rating = Math.max(0, Math.min(5, Math.floor(card.rating || 0)));
+    const stars = '★'.repeat(rating) + '☆'.repeat(5 - rating);
+    const reviews = card.reviews || 0;
+    
+    // Safely get nested properties
+    const features = card.features || {};
+    const highlights = Array.isArray(card.highlights) ? card.highlights : [];
     
     cardDiv.innerHTML = `
-        ${card.badge ? `<div class="card-badge ${card.badge}">${card.badge.toUpperCase()}</div>` : ''}
+        ${card.badge ? `<div class="card-badge ${escapeHtml(card.badge)}" role="note">${escapeHtml(card.badge.toUpperCase())}</div>` : ''}
         
         <div class="card-header">
-            <div class="card-logo">${card.logo}</div>
+            <div class="card-logo" aria-label="${escapeHtml(card.name || 'Card')} logo">${escapeHtml(card.logo || 'N/A')}</div>
             <div class="card-rating">
-                <div class="rating-stars">${stars}</div>
-                <div class="rating-text">${card.rating} (${card.reviews.toLocaleString()})</div>
+                <div class="rating-stars" aria-label="Rating: ${card.rating || 0} out of 5 stars">${stars}</div>
+                <div class="rating-text">${card.rating || 0} (${reviews.toLocaleString()})</div>
             </div>
         </div>
         
-        <h3 class="card-title">${card.name}</h3>
-        <p class="card-subtitle">${card.subtitle}</p>
+        <h3 class="card-title" id="card-title-${card.id}">${escapeHtml(card.name || 'Unknown Card')}</h3>
+        <p class="card-subtitle">${escapeHtml(card.subtitle || '')}</p>
         
-        <div class="card-reward">${card.rewardText}</div>
+        <div class="card-reward">${escapeHtml(card.rewardText || '')}</div>
         
-        <ul class="card-highlights">
-            ${card.highlights.map(highlight => `<li>${highlight}</li>`).join('')}
+        <ul class="card-highlights" aria-label="Card benefits">
+            ${highlights.map(highlight => `<li>${escapeHtml(highlight)}</li>`).join('')}
         </ul>
         
         <div class="card-features">
             <div class="feature">
-                <div class="feature-value">${card.features.fee}</div>
+                <div class="feature-value">${escapeHtml(features.fee || 'N/A')}</div>
                 <div class="feature-label">Annual Fee</div>
             </div>
             <div class="feature">
-                <div class="feature-value">${card.features.cashback}</div>
+                <div class="feature-value">${escapeHtml(features.cashback || 'N/A')}</div>
                 <div class="feature-label">Max Rewards</div>
             </div>
             <div class="feature">
-                <div class="feature-value">${card.features.bonus}</div>
+                <div class="feature-value">${escapeHtml(features.bonus || 'N/A')}</div>
                 <div class="feature-label">Sign-up Bonus</div>
             </div>
         </div>
         
         <div class="card-actions">
-            <a href="#" class="btn btn-primary" onclick="trackCardClick('${card.name}', 'apply')">Apply Now</a>
-            <a href="#" class="btn btn-secondary" onclick="trackCardClick('${card.name}', 'learn')">Learn More</a>
+            <button class="btn btn-primary" onclick="trackCardClick('${escapeHtml(card.name)}', 'apply')" aria-label="Apply for ${escapeHtml(card.name)} card">Apply Now</button>
+            <button class="btn btn-secondary" onclick="trackCardClick('${escapeHtml(card.name)}', 'learn')" aria-label="Learn more about ${escapeHtml(card.name)} card">Learn More</button>
         </div>
     `;
     
     return cardDiv;
 }
 
+// Utility function to escape HTML and prevent XSS
+function escapeHtml(text) {
+    if (typeof text !== 'string') return text;
+    const map = {
+        '&': '&amp;',
+        '<': '&lt;',
+        '>': '&gt;',
+        '"': '&quot;',
+        "'": '&#039;'
+    };
+    return text.replace(/[&<>"']/g, function(m) { return map[m]; });
+}
+
 // Setup filter functionality
 function setupFilters() {
-    [cardTypeFilter, rewardTypeFilter, annualFeeFilter].forEach(filter => {
-        filter.addEventListener('change', applyFilters);
-    });
+    try {
+        const filters = [cardTypeFilter, rewardTypeFilter, annualFeeFilter];
+        
+        filters.forEach(filter => {
+            if (filter) {
+                filter.addEventListener('change', applyFilters);
+            } else {
+                console.warn('Filter element not found');
+            }
+        });
+    } catch (error) {
+        console.error('Error setting up filters:', error);
+    }
+}
+
+// Setup mobile navigation
+function setupMobileNavigation() {
+    if (navToggle && navMenu) {
+        navToggle.addEventListener('click', function() {
+            const isActive = navMenu.classList.contains('active');
+            navMenu.classList.toggle('active');
+            navToggle.classList.toggle('active');
+            navToggle.setAttribute('aria-expanded', !isActive);
+        });
+        
+        // Close mobile menu when clicking on a link
+        navMenu.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                navMenu.classList.remove('active');
+                navToggle.classList.remove('active');
+                navToggle.setAttribute('aria-expanded', 'false');
+            });
+        });
+    }
 }
 
 // Apply filters to cards
 function applyFilters() {
-    const typeFilter = cardTypeFilter.value;
-    const rewardFilter = rewardTypeFilter.value;
-    const feeFilter = annualFeeFilter.value;
-    
-    let filteredCards = cryptoCards.filter(card => {
-        // Type filter
-        if (typeFilter !== 'all' && card.type !== typeFilter) {
-            return false;
+    try {
+        if (!cardTypeFilter || !rewardTypeFilter || !annualFeeFilter) {
+            console.error('Filter elements not available');
+            return;
         }
         
-        // Reward filter
-        if (rewardFilter !== 'all' && card.rewardType !== rewardFilter) {
-            return false;
-        }
+        const typeFilter = cardTypeFilter.value;
+        const rewardFilter = rewardTypeFilter.value;
+        const feeFilter = annualFeeFilter.value;
         
-        // Annual fee filter
-        if (feeFilter === 'no-fee' && card.annualFee > 0) {
-            return false;
-        }
-        if (feeFilter === 'low-fee' && card.annualFee >= 100) {
-            return false;
-        }
+        let filteredCards = cryptoCards.filter(card => {
+            if (!card || typeof card !== 'object') {
+                console.warn('Invalid card data:', card);
+                return false;
+            }
+            
+            // Type filter
+            if (typeFilter !== 'all' && card.type !== typeFilter) {
+                return false;
+            }
+            
+            // Reward filter
+            if (rewardFilter !== 'all' && card.rewardType !== rewardFilter) {
+                return false;
+            }
+            
+            // Annual fee filter
+            if (feeFilter === 'no-fee' && (card.annualFee > 0)) {
+                return false;
+            }
+            if (feeFilter === 'low-fee' && (card.annualFee >= 100)) {
+                return false;
+            }
+            
+            return true;
+        });
         
-        return true;
-    });
-    
-    // Sort by rating (highest first)
-    filteredCards.sort((a, b) => b.rating - a.rating);
-    
-    renderCards(filteredCards);
+        // Sort by rating (highest first)
+        filteredCards.sort((a, b) => (b.rating || 0) - (a.rating || 0));
+        
+        renderCards(filteredCards);
+    } catch (error) {
+        console.error('Error applying filters:', error);
+    }
 }
 
 // Track card clicks for analytics
