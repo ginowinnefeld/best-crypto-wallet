@@ -1,324 +1,339 @@
 // =============================================================================
-// CRYPTOGUIDE INTERACTIVE FEATURES
-// Modern crypto personal finance platform
+// BEST CRYPTO CARDS 2025 - INTERACTIVE FEATURES
+// Production-ready crypto cards comparison platform
 // =============================================================================
 
 // Application State
 const AppState = {
-  theme: 'light',
-  language: 'es',
-  currency: 'eur',
-  currentCards: []
-};
-
-// Translations
-const translations = {
-  es: {
-    pageTitle: 'Mejores Tarjetas Cripto España 2024 - CryptoGuide',
-    heroTitle: 'Mejores Tarjetas Cripto de España 2024',
-    heroSubtitle: 'Dinero cripto, simplificado.',
-    heroDescription: 'Compara tarjetas de débito y crédito cripto para obtener recompensas en tus gastos diarios. Encuentra la tarjeta perfecta para tu viaje cripto.',
-    compareCTA: 'Ver Mejores Tarjetas',
-    methodologyCTA: 'Metodología',
-    filtersTitle: 'Encuentra Tu Tarjeta Cripto Perfecta',
-    cardType: 'Tipo de Tarjeta',
-    rewardType: 'Tipo de Recompensa',
-    annualFee: 'Cuota Anual',
-    allTypes: 'Todos los Tipos',
-    debitCards: 'Tarjetas Débito Cripto',
-    creditCards: 'Tarjetas Crédito Cripto',
-    allRewards: 'Todas las Recompensas',
-    bitcoinRewards: 'Recompensas Bitcoin',
-    cashback: 'Devolución Efectivo',
-    cryptoRewards: 'Recompensas Cripto',
-    anyFee: 'Cualquier Cuota',
-    noFee: 'Sin Cuota Anual',
-    lowFee: 'Menos de €100',
-    applyNow: 'Solicitar Ahora',
-    learnMore: 'Ver Detalles',
-    sponsored: 'Patrocinado',
-    euDisclaimer: 'Los criptoactivos son altamente volátiles y no están regulados en algunos países de la UE. No hay protección al consumidor. Pueden aplicarse impuestos sobre las ganancias.'
-  },
-  en: {
-    pageTitle: 'Best Crypto Cards Spain 2024 - CryptoGuide',
-    heroTitle: 'Best Crypto Cards of Spain 2024',
-    heroSubtitle: 'Crypto money, made simple.',
-    heroDescription: 'Compare crypto debit and credit cards to earn rewards on your everyday spending. Find the perfect card for your crypto journey.',
-    compareCTA: 'View Best Cards',
-    methodologyCTA: 'Methodology',
-    filtersTitle: 'Find Your Perfect Crypto Card',
-    cardType: 'Card Type',
-    rewardType: 'Reward Type',
-    annualFee: 'Annual Fee',
-    allTypes: 'All Types',
-    debitCards: 'Crypto Debit Cards',
-    creditCards: 'Crypto Credit Cards',
-    allRewards: 'All Rewards',
-    bitcoinRewards: 'Bitcoin Rewards',
-    cashback: 'Cash Back',
-    cryptoRewards: 'Crypto Rewards',
-    anyFee: 'Any Fee',
-    noFee: 'No Annual Fee',
-    lowFee: 'Under $100',
-    applyNow: 'Apply Now',
-    learnMore: 'See Details',
-    sponsored: 'Sponsored',
-    euDisclaimer: 'Cryptoassets are highly volatile and unregulated in some EU countries. No consumer protection. Tax on profits may apply.'
+  currentCards: [],
+  filters: {
+    type: 'all',
+    rewards: 'all',
+    annualFee: 'all'
   }
 };
 
-// Crypto Cards Data with enhanced structure
+// Comprehensive crypto cards data with 12 real products
 const cryptoCards = [
   {
-    id: 1,
+    id: 'coinbase-card',
     name: 'Coinbase Card',
-    subtitle: 'Visa Debit Card',
+    issuer: 'Coinbase',
     type: 'debit',
-    rewardType: 'crypto',
-    annualFee: { eur: 0, usd: 0 },
-    rating: 4.5,
-    reviews: 2847,
-    logo: 'CB',
-    score: 88,
-    highlights: {
-      es: [
-        'Hasta 4% recompensas cripto',
-        'Sin cuota anual',
-        'Asegurado FDIC',
-        'Conversión cripto en tiempo real'
-      ],
-      en: [
-        'Up to 4% crypto rewards',
-        'No annual fee',
-        'FDIC insured',
-        'Real-time crypto conversion'
-      ]
-    },
-    rewardText: {
-      es: 'Hasta 4% en recompensas cripto',
-      en: 'Up to 4% in crypto rewards'
-    },
-    features: {
-      fee: { eur: '€0', usd: '$0' },
-      cashback: '4%',
-      bonus: { es: 'Ninguno', en: 'None' }
-    },
-    badge: 'featured',
-    affiliate: true
-  },
-  {
-    id: 2,
-    name: 'Crypto.com Visa Card',
-    subtitle: 'Metal Debit Card',
-    type: 'debit',
-    rewardType: 'cashback',
-    annualFee: { eur: 0, usd: 0 },
-    rating: 4.3,
-    reviews: 1923,
-    logo: 'CDC',
     score: 92,
-    highlights: {
-      es: [
-        'Hasta 8% devolución',
-        'Reembolsos Netflix y Spotify',
-        'Acceso a salas VIP aeropuertos',
-        'Recompensas staking CRO'
-      ],
-      en: [
-        'Up to 8% cashback',
-        'Netflix & Spotify rebates',
-        'Airport lounge access',
-        'CRO staking rewards'
-      ]
-    },
-    rewardText: {
-      es: 'Hasta 8% devolución con staking CRO',
-      en: 'Up to 8% cashback with CRO staking'
-    },
-    features: {
-      fee: { eur: '€0', usd: '$0' },
-      cashback: '8%',
-      bonus: { es: '€50', en: '$50' }
-    },
-    badge: 'new',
-    affiliate: true
+    annualFee: 0,
+    rewardsRate: '4.00',
+    rewardsType: 'crypto',
+    highlights: [
+      'Up to 4% back in crypto rewards',
+      'No annual fee or foreign transaction fees',
+      'Instant conversion from crypto to USD'
+    ],
+    minSpend: 0,
+    welcomeBonus: null,
+    cryptoSupported: ['BTC', 'ETH', 'LTC', 'BCH', 'BAT', 'REP', 'ZRX', 'USDC'],
+    stakingRequired: false,
+    applicationUrl: 'https://www.coinbase.com/card',
+    pros: ['High rewards rate', 'No fees', 'Wide crypto support'],
+    cons: ['Requires Coinbase account', 'Limited to debit only'],
+    details: 'The Coinbase Card offers one of the highest crypto reward rates available, with up to 4% back in select cryptocurrencies.',
+    sponsored: true
   },
   {
-    id: 3,
-    name: 'BlockFi Rewards Card',
-    subtitle: 'Bitcoin Credit Card',
-    type: 'credit',
-    rewardType: 'bitcoin',
-    annualFee: { eur: 0, usd: 0 },
-    rating: 4.1,
-    reviews: 1156,
-    logo: 'BF',
-    score: 76,
-    highlights: {
-      es: [
-        '1.5% recompensas bitcoin',
-        'Sin cuota anual',
-        'Tasas APR estándar',
-        'Gestión app móvil'
-      ],
-      en: [
-        '1.5% bitcoin rewards',
-        'No annual fee',
-        'Standard APR rates',
-        'Mobile app management'
-      ]
-    },
-    rewardText: {
-      es: '1.5% de vuelta en Bitcoin en todas las compras',
-      en: '1.5% back in Bitcoin on all purchases'
-    },
-    features: {
-      fee: { eur: '€0', usd: '$0' },
-      cashback: '1.5%',
-      bonus: { es: '€100', en: '$100' }
-    },
-    affiliate: true
-  },
-  {
-    id: 4,
-    name: 'Gemini Credit Card',
-    subtitle: 'Mastercard Credit Card',
-    type: 'credit',
-    rewardType: 'crypto',
-    annualFee: { eur: 0, usd: 0 },
-    rating: 4.2,
-    reviews: 892,
-    logo: 'GM',
-    score: 81,
-    highlights: {
-      es: [
-        'Hasta 3% recompensas cripto',
-        'Canje en tiempo real',
-        'Sin tarifas transacciones extranjeras',
-        'Enfocado en seguridad'
-      ],
-      en: [
-        'Up to 3% crypto rewards',
-        'Real-time redemption',
-        'No foreign transaction fees',
-        'Security-focused'
-      ]
-    },
-    rewardText: {
-      es: 'Hasta 3% de vuelta en cripto',
-      en: 'Up to 3% back in crypto'
-    },
-    features: {
-      fee: { eur: '€0', usd: '$0' },
-      cashback: '3%',
-      bonus: { es: '€50', en: '$50' }
-    },
-    affiliate: false
-  },
-  {
-    id: 5,
-    name: 'BitPay Card',
-    subtitle: 'Prepaid Mastercard',
+    id: 'crypto-com-visa',
+    name: 'Crypto.com Visa Card',
+    issuer: 'Crypto.com',
     type: 'debit',
-    rewardType: 'cashback',
-    annualFee: { eur: 9.95, usd: 9.95 },
-    rating: 3.9,
-    reviews: 743,
-    logo: 'BP',
-    score: 68,
-    highlights: {
-      es: [
-        'Convierte cripto a EUR/USD',
-        'Soporte múltiples criptos',
-        'Tarjetas física y virtual',
-        'Gasto directo cripto'
-      ],
-      en: [
-        'Convert crypto to USD/EUR',
-        'Multiple crypto support',
-        'Physical & virtual cards',
-        'Direct crypto spending'
-      ]
-    },
-    rewardText: {
-      es: 'Gasta cripto directamente con conversión',
-      en: 'Spend crypto directly with conversion'
-    },
-    features: {
-      fee: { eur: '€9.95', usd: '$9.95' },
-      cashback: '0%',
-      bonus: { es: 'Ninguno', en: 'None' }
-    },
-    affiliate: true
+    score: 89,
+    annualFee: 0,
+    rewardsRate: '8.00',
+    rewardsType: 'crypto',
+    highlights: [
+      'Up to 8% cashback with CRO staking',
+      'Airport lounge access and travel perks',
+      'Netflix and Spotify rebates available'
+    ],
+    minSpend: 0,
+    welcomeBonus: '$25 CRO',
+    cryptoSupported: ['CRO', 'BTC', 'ETH', 'USDC', 'USDT'],
+    stakingRequired: true,
+    stakingAmount: '$400-$400,000 CRO',
+    applicationUrl: 'https://crypto.com/cards',
+    pros: ['Highest potential rewards', 'Premium perks', 'Multiple tiers'],
+    cons: ['Requires CRO staking', 'Complex tier system'],
+    details: 'Crypto.com offers multiple card tiers with rewards up to 8% cashback, but requires CRO token staking for higher tiers.',
+    sponsored: true
   },
   {
-    id: 6,
-    name: 'Nexo Card',
-    subtitle: 'Premium Metal Card',
-    type: 'debit',
-    rewardType: 'cashback',
-    annualFee: { eur: 0, usd: 0 },
-    rating: 4.4,
-    reviews: 1384,
-    logo: 'NX',
+    id: 'blockfi-rewards',
+    name: 'BlockFi Rewards Credit Card',
+    issuer: 'BlockFi',
+    type: 'credit',
     score: 85,
-    highlights: {
-      es: [
-        'Hasta 2% devolución',
-        'Sin comisiones con tokens NEXO',
-        'Gastos respaldados por cripto',
-        'Soporte premium'
-      ],
-      en: [
-        'Up to 2% cashback',
-        'No fees with NEXO tokens',
-        'Crypto-backed spending',
-        'Premium support'
-      ]
-    },
-    rewardText: {
-      es: 'Hasta 2% devolución en cripto',
-      en: 'Up to 2% cashback in crypto'
-    },
-    features: {
-      fee: { eur: '€0', usd: '$0' },
-      cashback: '2%',
-      bonus: { es: '€25', en: '$25' }
-    },
-    affiliate: false
+    annualFee: 0,
+    rewardsRate: '1.50',
+    rewardsType: 'bitcoin',
+    highlights: [
+      '1.5% back in Bitcoin on all purchases',
+      '3.5% back on crypto purchases',
+      'No annual fee with solid credit benefits'
+    ],
+    minSpend: 0,
+    welcomeBonus: '$250 Bitcoin',
+    cryptoSupported: ['BTC'],
+    stakingRequired: false,
+    applicationUrl: 'https://blockfi.com/credit-card',
+    pros: ['Bitcoin rewards', 'Credit card benefits', 'Higher rate on crypto'],
+    cons: ['Only Bitcoin rewards', 'Credit approval required'],
+    details: 'The BlockFi credit card automatically converts your cashback to Bitcoin, perfect for building your BTC stack.',
+    sponsored: false
+  },
+  {
+    id: 'gemini-credit',
+    name: 'Gemini Credit Card',
+    issuer: 'Gemini',
+    type: 'credit',
+    score: 83,
+    annualFee: 0,
+    rewardsRate: '3.00',
+    rewardsType: 'crypto',
+    highlights: [
+      'Up to 3% back in Bitcoin or other crypto',
+      'Real-time crypto rewards earning',
+      'No foreign transaction fees'
+    ],
+    minSpend: 0,
+    welcomeBonus: '$200 Bitcoin',
+    cryptoSupported: ['BTC', 'ETH', 'GUSD'],
+    stakingRequired: false,
+    applicationUrl: 'https://www.gemini.com/credit-card',
+    pros: ['Multiple crypto options', 'Good rewards rate', 'Real-time earning'],
+    cons: ['Credit approval needed', 'Limited crypto selection'],
+    details: 'Gemini\'s credit card offers flexible crypto rewards with the security of the regulated Gemini exchange.',
+    sponsored: true
+  },
+  {
+    id: 'bitpay-card',
+    name: 'BitPay Card',
+    issuer: 'BitPay',
+    type: 'debit',
+    score: 78,
+    annualFee: 9.95,
+    rewardsRate: '0.00',
+    rewardsType: 'none',
+    highlights: [
+      'Direct crypto spending capability',
+      'Supports 8+ cryptocurrencies',
+      'Global acceptance with Mastercard'
+    ],
+    minSpend: 0,
+    welcomeBonus: null,
+    cryptoSupported: ['BTC', 'ETH', 'LTC', 'DOGE', 'SHIB', 'GUSD', 'BUSD', 'USDC'],
+    stakingRequired: false,
+    applicationUrl: 'https://bitpay.com/card',
+    pros: ['Wide crypto support', 'Direct spending', 'Global acceptance'],
+    cons: ['Annual fee', 'No rewards', 'Conversion fees apply'],
+    details: 'BitPay Card allows direct spending from your crypto wallet with support for multiple cryptocurrencies.',
+    sponsored: false
+  },
+  {
+    id: 'nexo-card',
+    name: 'Nexo Card',
+    issuer: 'Nexo',
+    type: 'debit',
+    score: 86,
+    annualFee: 0,
+    rewardsRate: '2.00',
+    rewardsType: 'crypto',
+    highlights: [
+      'Up to 2% cashback in crypto',
+      'No fees with NEXO token holding',
+      'Spend crypto without selling'
+    ],
+    minSpend: 0,
+    welcomeBonus: null,
+    cryptoSupported: ['NEXO', 'BTC', 'ETH', 'USDC', 'USDT'],
+    stakingRequired: false,
+    nexoRequired: true,
+    applicationUrl: 'https://nexo.io/card',
+    pros: ['No selling required', 'Good rewards', 'Fee waivers with NEXO'],
+    cons: ['Requires NEXO tokens', 'Limited availability'],
+    details: 'Nexo Card lets you spend your crypto collateral without selling, earning rewards while maintaining your positions.',
+    sponsored: false
+  },
+  {
+    id: 'binance-visa',
+    name: 'Binance Visa Card',
+    issuer: 'Binance',
+    type: 'debit',
+    score: 81,
+    annualFee: 0,
+    rewardsRate: '8.00',
+    rewardsType: 'crypto',
+    highlights: [
+      'Up to 8% cashback with BNB staking',
+      'No annual fee across all tiers',
+      'Airport lounge access on higher tiers'
+    ],
+    minSpend: 0,
+    welcomeBonus: null,
+    cryptoSupported: ['BNB', 'BTC', 'ETH', 'BUSD', 'USDT'],
+    stakingRequired: true,
+    stakingAmount: '1-600 BNB',
+    applicationUrl: 'https://www.binance.com/en/cards',
+    pros: ['High potential rewards', 'Multiple tiers', 'Travel perks'],
+    cons: ['Requires BNB staking', 'Limited regions'],
+    details: 'Binance Card offers competitive cashback rates with BNB staking requirements and premium travel benefits.',
+    sponsored: true
+  },
+  {
+    id: 'uphold-card',
+    name: 'Uphold Card',
+    issuer: 'Uphold',
+    type: 'debit',
+    score: 75,
+    annualFee: 0,
+    rewardsRate: '0.00',
+    rewardsType: 'none',
+    highlights: [
+      'Spend 30+ cryptocurrencies directly',
+      'Real-time conversion at market rates',
+      'No monthly or annual fees'
+    ],
+    minSpend: 0,
+    welcomeBonus: null,
+    cryptoSupported: ['BTC', 'ETH', 'XRP', 'BAT', 'DASH', 'LTC', 'BCH', 'LINK', 'UNI', 'AAVE'],
+    stakingRequired: false,
+    applicationUrl: 'https://uphold.com/card',
+    pros: ['30+ crypto support', 'No fees', 'Real-time rates'],
+    cons: ['No rewards', 'Limited features'],
+    details: 'Uphold Card supports the widest range of cryptocurrencies for direct spending without conversion fees.',
+    sponsored: false
+  },
+  {
+    id: 'wirex-card',
+    name: 'Wirex Card',
+    issuer: 'Wirex',
+    type: 'debit',
+    score: 79,
+    annualFee: 0,
+    rewardsRate: '2.00',
+    rewardsType: 'crypto',
+    highlights: [
+      'Up to 2% back in WXT tokens',
+      'Multi-currency wallet support',
+      'Cryptoback rewards program'
+    ],
+    minSpend: 0,
+    welcomeBonus: null,
+    cryptoSupported: ['WXT', 'BTC', 'ETH', 'LTC', 'XRP', 'USDC'],
+    stakingRequired: false,
+    applicationUrl: 'https://wirexapp.com/card',
+    pros: ['Cryptoback program', 'Multi-currency', 'No annual fee'],
+    cons: ['WXT token rewards', 'Regional restrictions'],
+    details: 'Wirex pioneered crypto rewards with their Cryptoback program, offering WXT tokens for everyday spending.',
+    sponsored: false
+  },
+  {
+    id: 'swipe-card',
+    name: 'Swipe Card',
+    issuer: 'Swipe',
+    type: 'debit',
+    score: 72,
+    annualFee: 0,
+    rewardsRate: '8.00',
+    rewardsType: 'crypto',
+    highlights: [
+      'Up to 8% cashback with SXP staking',
+      'Netflix and Spotify rebates',
+      'Airport lounge access available'
+    ],
+    minSpend: 0,
+    welcomeBonus: null,
+    cryptoSupported: ['SXP', 'BTC', 'ETH', 'USDC'],
+    stakingRequired: true,
+    stakingAmount: '300-300,000 SXP',
+    applicationUrl: 'https://swipe.io/card',
+    pros: ['High rewards potential', 'Premium perks', 'Multiple tiers'],
+    cons: ['SXP staking required', 'Limited availability'],
+    details: 'Swipe Card offers tiered rewards up to 8% cashback with SXP token staking and premium lifestyle benefits.',
+    sponsored: false
+  },
+  {
+    id: 'crypto-ruby-steel',
+    name: 'Crypto.com Ruby Steel',
+    issuer: 'Crypto.com',
+    type: 'debit',
+    score: 84,
+    annualFee: 0,
+    rewardsRate: '2.00',
+    rewardsType: 'crypto',
+    highlights: [
+      '2% unlimited cashback in CRO',
+      'Spotify Premium rebate included',
+      'No annual fee with $400 CRO stake'
+    ],
+    minSpend: 0,
+    welcomeBonus: null,
+    cryptoSupported: ['CRO', 'BTC', 'ETH', 'USDC'],
+    stakingRequired: true,
+    stakingAmount: '$400 CRO',
+    applicationUrl: 'https://crypto.com/cards',
+    pros: ['Good base rewards', 'Spotify rebate', 'Accessible staking'],
+    cons: ['CRO staking required', 'Single tier'],
+    details: 'Ruby Steel is Crypto.com\'s entry-level premium card offering solid 2% rewards with minimal staking requirements.',
+    sponsored: true
+  },
+  {
+    id: 'fold-card',
+    name: 'Fold Card',
+    issuer: 'Fold',
+    type: 'debit',
+    score: 88,
+    annualFee: 0,
+    rewardsRate: '1.00',
+    rewardsType: 'bitcoin',
+    highlights: [
+      'Bitcoin-back rewards on purchases',
+      'Sats stacking with every transaction',
+      'Gamified rewards experience'
+    ],
+    minSpend: 0,
+    welcomeBonus: '20,000 sats',
+    cryptoSupported: ['BTC'],
+    stakingRequired: false,
+    applicationUrl: 'https://foldapp.com/card',
+    pros: ['Pure Bitcoin focus', 'Gamified experience', 'No staking required'],
+    cons: ['Bitcoin only', 'Variable rewards rate'],
+    details: 'Fold Card focuses exclusively on Bitcoin rewards with a unique spin-to-earn system for additional sats.',
+    sponsored: false
   }
 ];
 
 // DOM Elements
-let cardsContainer, cardTypeFilter, rewardTypeFilter, annualFeeFilter;
-let themeToggle, langBtns, currencyBtns, navToggle, navMenu;
+let cardsContainer, cardTypeFilter, rewardTypeFilter, annualFeeFilter, filtersContainer;
 
 // Initialize application
 document.addEventListener('DOMContentLoaded', function() {
   try {
     initializeDOMElements();
-    initializeTheme();
-    initializeLanguage();
-    initializeCurrency();
+    loadFiltersFromURL();
     setupEventListeners();
-    renderCards(cryptoCards);
-    updateUI();
+    renderCards(getFilteredCards());
+    updateFiltersUI();
+    renderComparisonTable();
   } catch (error) {
     console.error('Error initializing application:', error);
   }
 });
 
-// Initialize DOM elements with error handling
+// Initialize DOM elements
 function initializeDOMElements() {
   cardsContainer = document.getElementById('cards-container');
   cardTypeFilter = document.getElementById('card-type');
   rewardTypeFilter = document.getElementById('reward-type');
   annualFeeFilter = document.getElementById('annual-fee');
-  themeToggle = document.querySelector('.theme-toggle');
-  langBtns = document.querySelectorAll('.lang-btn');
-  currencyBtns = document.querySelectorAll('.currency-btn');
-  navToggle = document.querySelector('.nav-toggle');
-  navMenu = document.querySelector('.nav-menu');
+  filtersContainer = document.querySelector('.filters-container');
   
   if (!cardsContainer) {
     throw new Error('Cards container not found');
@@ -327,186 +342,184 @@ function initializeDOMElements() {
   return true;
 }
 
-// Theme Management
-function initializeTheme() {
-  const savedTheme = localStorage.getItem('cryptoguide-theme') || 'light';
-  setTheme(savedTheme);
+// URL Parameters Management
+function loadFiltersFromURL() {
+  const urlParams = new URLSearchParams(window.location.search);
+  
+  AppState.filters.type = urlParams.get('type') || 'all';
+  AppState.filters.rewards = urlParams.get('rewards') || 'all';
+  AppState.filters.annualFee = urlParams.get('fee') || 'all';
 }
 
-function setTheme(theme) {
-  AppState.theme = theme;
-  document.documentElement.setAttribute('data-theme', theme);
-  localStorage.setItem('cryptoguide-theme', theme);
-}
-
-function toggleTheme() {
-  const newTheme = AppState.theme === 'light' ? 'dark' : 'light';
-  setTheme(newTheme);
-}
-
-// Language Management
-function initializeLanguage() {
-  const savedLang = localStorage.getItem('cryptoguide-language') || 'es';
-  setLanguage(savedLang);
-}
-
-function setLanguage(lang) {
-  AppState.language = lang;
-  document.documentElement.setAttribute('lang', lang);
-  localStorage.setItem('cryptoguide-language', lang);
-  updateLanguageButtons();
-  updatePageContent();
-}
-
-function updateLanguageButtons() {
-  langBtns.forEach(btn => {
-    btn.classList.toggle('active', btn.dataset.lang === AppState.language);
-  });
-}
-
-function updatePageContent() {
-  const t = translations[AppState.language];
+function updateURL() {
+  const url = new URL(window.location);
+  const params = url.searchParams;
   
-  // Update page title
-  document.title = t.pageTitle;
-  
-  // Update hero content
-  const heroTitle = document.querySelector('.hero-title');
-  const heroSubtitle = document.querySelector('.hero-subtitle');
-  const heroDescription = document.querySelector('.hero-description');
-  
-  if (heroTitle) heroTitle.textContent = t.heroTitle;
-  if (heroSubtitle) heroSubtitle.textContent = t.heroSubtitle;
-  if (heroDescription) heroDescription.textContent = t.heroDescription;
-  
-  // Update buttons
-  const compareCTA = document.querySelector('.hero-actions .btn-primary');
-  const methodologyCTA = document.querySelector('.hero-actions .btn-secondary');
-  
-  if (compareCTA) compareCTA.textContent = t.compareCTA;
-  if (methodologyCTA) methodologyCTA.textContent = t.methodologyCTA;
-  
-  // Update filters
-  const filtersTitle = document.querySelector('.filters-header h2');
-  if (filtersTitle) filtersTitle.textContent = t.filtersTitle;
-  
-  updateFilterOptions();
-  
-  // Update disclaimer
-  const disclaimerText = document.querySelector('.disclaimer-content p');
-  if (disclaimerText) disclaimerText.textContent = t.euDisclaimer;
-  
-  // Re-render cards to update language-specific content
-  renderCards(AppState.currentCards.length ? AppState.currentCards : cryptoCards);
-}
-
-function updateFilterOptions() {
-  const t = translations[AppState.language];
-  
-  // Card type filter
-  if (cardTypeFilter) {
-    const options = cardTypeFilter.options;
-    options[0].textContent = t.allTypes;
-    options[1].textContent = t.debitCards;
-    options[2].textContent = t.creditCards;
+  // Set or remove parameters
+  if (AppState.filters.type !== 'all') {
+    params.set('type', AppState.filters.type);
+  } else {
+    params.delete('type');
   }
   
-  // Reward type filter
-  if (rewardTypeFilter) {
-    const options = rewardTypeFilter.options;
-    options[0].textContent = t.allRewards;
-    options[1].textContent = t.bitcoinRewards;
-    options[2].textContent = t.cashback;
-    options[3].textContent = t.cryptoRewards;
+  if (AppState.filters.rewards !== 'all') {
+    params.set('rewards', AppState.filters.rewards);
+  } else {
+    params.delete('rewards');
   }
   
-  // Annual fee filter
-  if (annualFeeFilter) {
-    const options = annualFeeFilter.options;
-    options[0].textContent = t.anyFee;
-    options[1].textContent = t.noFee;
-    if (AppState.currency === 'eur') {
-      options[2].textContent = 'Menos de €100';
-    } else {
-      options[2].textContent = 'Under $100';
-    }
+  if (AppState.filters.annualFee !== 'all') {
+    params.set('fee', AppState.filters.annualFee);
+  } else {
+    params.delete('fee');
   }
-}
-
-// Currency Management
-function initializeCurrency() {
-  const savedCurrency = localStorage.getItem('cryptoguide-currency') || 'eur';
-  setCurrency(savedCurrency);
-}
-
-function setCurrency(currency) {
-  AppState.currency = currency;
-  localStorage.setItem('cryptoguide-currency', currency);
-  updateCurrencyButtons();
-  updateFilterOptions();
-  renderCards(AppState.currentCards.length ? AppState.currentCards : cryptoCards);
-}
-
-function updateCurrencyButtons() {
-  currencyBtns.forEach(btn => {
-    btn.classList.toggle('active', btn.dataset.currency === AppState.currency);
-  });
+  
+  // Update URL without page reload
+  window.history.pushState({}, '', url);
 }
 
 // Event Listeners
 function setupEventListeners() {
-  // Theme toggle
-  if (themeToggle) {
-    themeToggle.addEventListener('click', toggleTheme);
-  }
-  
-  // Language toggle
-  langBtns.forEach(btn => {
-    btn.addEventListener('click', (e) => {
-      setLanguage(e.target.dataset.lang);
-    });
-  });
-  
-  // Currency toggle
-  currencyBtns.forEach(btn => {
-    btn.addEventListener('click', (e) => {
-      setCurrency(e.target.dataset.currency);
-    });
-  });
-  
-  // Filters
-  [cardTypeFilter, rewardTypeFilter, annualFeeFilter].forEach(filter => {
-    if (filter) {
-      filter.addEventListener('change', applyFilters);
-    }
-  });
-  
-  // Mobile navigation
-  if (navToggle && navMenu) {
-    navToggle.addEventListener('click', toggleMobileNav);
-    
-    // Close mobile menu when clicking on links
-    navMenu.querySelectorAll('a').forEach(link => {
-      link.addEventListener('click', closeMobileNav);
+  // Filter change events
+  if (cardTypeFilter) {
+    cardTypeFilter.addEventListener('change', (e) => {
+      AppState.filters.type = e.target.value;
+      applyFiltersWithURL();
     });
   }
   
-  // Smooth scrolling
+  if (rewardTypeFilter) {
+    rewardTypeFilter.addEventListener('change', (e) => {
+      AppState.filters.rewards = e.target.value;
+      applyFiltersWithURL();
+    });
+  }
+  
+  if (annualFeeFilter) {
+    annualFeeFilter.addEventListener('change', (e) => {
+      AppState.filters.annualFee = e.target.value;
+      applyFiltersWithURL();
+    });
+  }
+  
+  // Browser back/forward navigation
+  window.addEventListener('popstate', function() {
+    loadFiltersFromURL();
+    updateFiltersUI();
+    renderCards(getFilteredCards());
+    updateFilterChips();
+  });
+  
+  // Smooth scrolling for anchor links
   setupSmoothScrolling();
 }
 
-// Mobile Navigation
-function toggleMobileNav() {
-  const isActive = navMenu.classList.contains('active');
-  navMenu.classList.toggle('active');
-  navToggle.classList.toggle('active');
-  navToggle.setAttribute('aria-expanded', !isActive);
+// Filtering Logic
+function getFilteredCards() {
+  return cryptoCards.filter(card => {
+    // Type filter
+    if (AppState.filters.type !== 'all' && card.type !== AppState.filters.type) {
+      return false;
+    }
+    
+    // Reward type filter
+    if (AppState.filters.rewards !== 'all') {
+      if (AppState.filters.rewards === 'bitcoin' && card.rewardsType !== 'bitcoin') {
+        return false;
+      }
+      if (AppState.filters.rewards === 'crypto' && !['crypto', 'bitcoin'].includes(card.rewardsType)) {
+        return false;
+      }
+      if (AppState.filters.rewards === 'cashback' && card.rewardsType === 'none') {
+        return false;
+      }
+    }
+    
+    // Annual fee filter
+    if (AppState.filters.annualFee === 'no-fee' && card.annualFee > 0) {
+      return false;
+    }
+    if (AppState.filters.annualFee === 'low-fee' && card.annualFee >= 100) {
+      return false;
+    }
+    
+    return true;
+  }).sort((a, b) => b.score - a.score); // Sort by score descending
 }
 
-function closeMobileNav() {
-  navMenu.classList.remove('active');
-  navToggle.classList.remove('active');
-  navToggle.setAttribute('aria-expanded', 'false');
+function applyFiltersWithURL() {
+  const filteredCards = getFilteredCards();
+  renderCards(filteredCards);
+  updateURL();
+  updateFilterChips();
+  
+  // Track analytics
+  trackFilterChange();
+}
+
+// UI Updates
+function updateFiltersUI() {
+  if (cardTypeFilter) cardTypeFilter.value = AppState.filters.type;
+  if (rewardTypeFilter) rewardTypeFilter.value = AppState.filters.rewards;
+  if (annualFeeFilter) annualFeeFilter.value = AppState.filters.annualFee;
+}
+
+function updateFilterChips() {
+  // Remove existing chips
+  const existingChips = document.querySelectorAll('.filter-chip');
+  existingChips.forEach(chip => chip.remove());
+  
+  const chipsContainer = document.querySelector('.filters-chips');
+  if (!chipsContainer) return;
+  
+  const activeFilters = [];
+  
+  // Add active filter chips
+  if (AppState.filters.type !== 'all') {
+    const label = AppState.filters.type === 'debit' ? 'Debit Cards' : 'Credit Cards';
+    activeFilters.push({ key: 'type', label: label });
+  }
+  
+  if (AppState.filters.rewards !== 'all') {
+    const rewardLabels = {
+      'bitcoin': 'Bitcoin Rewards',
+      'crypto': 'Crypto Rewards', 
+      'cashback': 'Cashback'
+    };
+    activeFilters.push({ key: 'rewards', label: rewardLabels[AppState.filters.rewards] });
+  }
+  
+  if (AppState.filters.annualFee !== 'all') {
+    const feeLabels = {
+      'no-fee': 'No Annual Fee',
+      'low-fee': 'Under $100 Fee'
+    };
+    activeFilters.push({ key: 'annualFee', label: feeLabels[AppState.filters.annualFee] });
+  }
+  
+  // Create chip elements
+  activeFilters.forEach(filter => {
+    const chip = document.createElement('div');
+    chip.className = 'filter-chip';
+    chip.innerHTML = `
+      ${filter.label}
+      <button class="chip-remove" onclick="removeFilter('${filter.key}')" aria-label="Remove ${filter.label} filter">×</button>
+    `;
+    chipsContainer.appendChild(chip);
+  });
+  
+  // Show count
+  const filteredCount = getFilteredCards().length;
+  const countElement = document.querySelector('.results-count');
+  if (countElement) {
+    countElement.textContent = `${filteredCount} cards found`;
+  }
+}
+
+function removeFilter(filterKey) {
+  AppState.filters[filterKey] = 'all';
+  updateFiltersUI();
+  applyFiltersWithURL();
 }
 
 // Card Rendering
@@ -537,72 +550,69 @@ function renderCards(cards) {
 }
 
 function createProductCard(card) {
-  const t = translations[AppState.language];
-  const lang = AppState.language;
-  const currency = AppState.currency;
-  
-  // Get score class
+  // Get score styling
   const scoreClass = getScoreClass(card.score);
   
   // Create card element
   const cardDiv = document.createElement('article');
   cardDiv.className = 'product-card';
-  cardDiv.setAttribute('aria-labelledby', `card-title-${card.id}`);
+  cardDiv.setAttribute('itemscope', '');
+  cardDiv.setAttribute('itemtype', 'https://schema.org/FinancialProduct');
   
   // Generate content
   cardDiv.innerHTML = `
-    ${card.badge ? `<div class="card-badge ${card.badge}">${card.badge.toUpperCase()}</div>` : ''}
-    ${card.affiliate ? '<div class="sponsored-label">' + t.sponsored + '</div>' : ''}
+    ${card.sponsored ? '<div class="sponsored-label">Sponsored</div>' : ''}
     
     <div class="card-header">
       <div class="card-logo" aria-label="${escapeHtml(card.name)} logo">
-        ${escapeHtml(card.logo)}
+        <span class="logo-initials">${getInitials(card.name)}</span>
       </div>
       <div class="card-rating">
         <div class="score-chip ${scoreClass}" aria-label="Score: ${card.score} out of 100">
           ${card.score}
         </div>
-        <div class="rating-text">${card.rating} (${card.reviews.toLocaleString()})</div>
       </div>
     </div>
     
-    <h3 class="card-title" id="card-title-${card.id}">${escapeHtml(card.name)}</h3>
-    <p class="card-subtitle">${escapeHtml(card.subtitle)}</p>
+    <h3 class="card-title" itemprop="name">${escapeHtml(card.name)}</h3>
+    <p class="card-subtitle">${escapeHtml(card.issuer)} • ${card.type === 'debit' ? 'Debit Card' : 'Credit Card'}</p>
     
-    <div class="card-reward">${escapeHtml(card.rewardText[lang] || card.rewardText.es)}</div>
+    <div class="card-reward" itemprop="description">
+      Up to ${card.rewardsRate}% ${card.rewardsType === 'bitcoin' ? 'in Bitcoin' : card.rewardsType === 'crypto' ? 'in Crypto' : 'Cashback'}
+    </div>
     
     <ul class="card-highlights" aria-label="Card benefits">
-      ${(card.highlights[lang] || card.highlights.es).map(highlight => 
+      ${card.highlights.map(highlight => 
         `<li>${escapeHtml(highlight)}</li>`
       ).join('')}
     </ul>
     
     <div class="card-features">
       <div class="feature">
-        <div class="feature-value">${escapeHtml(card.features.fee[currency])}</div>
-        <div class="feature-label">${lang === 'es' ? 'Cuota Anual' : 'Annual Fee'}</div>
+        <div class="feature-value">$${card.annualFee}</div>
+        <div class="feature-label">Annual Fee</div>
       </div>
       <div class="feature">
-        <div class="feature-value">${escapeHtml(card.features.cashback)}</div>
-        <div class="feature-label">${lang === 'es' ? 'Recompensas Max' : 'Max Rewards'}</div>
+        <div class="feature-value">${card.rewardsRate}%</div>
+        <div class="feature-label">Max Rewards</div>
       </div>
       <div class="feature">
-        <div class="feature-value">${escapeHtml(typeof card.features.bonus === 'object' ? card.features.bonus[currency.replace('eur', '€').replace('usd', '$')] || card.features.bonus[lang] : card.features.bonus)}</div>
-        <div class="feature-label">${lang === 'es' ? 'Bono Registro' : 'Sign-up Bonus'}</div>
+        <div class="feature-value">${card.welcomeBonus || 'None'}</div>
+        <div class="feature-label">Welcome Bonus</div>
       </div>
     </div>
     
     <div class="card-actions">
       <button class="btn btn-primary" 
               onclick="trackCardClick('${escapeHtml(card.name)}', 'apply')" 
-              aria-label="${t.applyNow} for ${escapeHtml(card.name)}"
-              ${card.affiliate ? 'rel="sponsored"' : ''}>
-        ${t.applyNow}
+              aria-label="Apply now for ${escapeHtml(card.name)}"
+              ${card.sponsored ? 'rel="sponsored"' : ''}>
+        Apply Now
       </button>
       <button class="btn btn-secondary" 
-              onclick="trackCardClick('${escapeHtml(card.name)}', 'details')" 
-              aria-label="${t.learnMore} about ${escapeHtml(card.name)}">
-        ${t.learnMore}
+              onclick="showCardDetails('${card.id}')" 
+              aria-label="Learn more about ${escapeHtml(card.name)}">
+        Learn More
       </button>
     </div>
   `;
@@ -610,85 +620,67 @@ function createProductCard(card) {
   return cardDiv;
 }
 
+function getInitials(name) {
+  return name.split(' ').map(word => word[0]).join('').substring(0, 2).toUpperCase();
+}
+
 function getScoreClass(score) {
-  if (score >= 80) return 'score-excellent';
-  if (score >= 60) return 'score-good';
-  if (score >= 40) return 'score-fair';
+  if (score >= 85) return 'score-excellent';
+  if (score >= 75) return 'score-good';
+  if (score >= 65) return 'score-fair';
   return 'score-poor';
 }
 
 function renderNoResults() {
-  const lang = AppState.language;
-  const message = lang === 'es' 
-    ? 'No se encontraron tarjetas que coincidan con tus filtros. Prueba ajustar los criterios de búsqueda.'
-    : 'No cards match your current filters. Try adjusting your search criteria.';
-    
   cardsContainer.innerHTML = `
     <div class="no-results">
-      <p>${message}</p>
+      <h3>No cards match your current filters</h3>
+      <p>Try adjusting your search criteria or <button onclick="clearAllFilters()" class="btn-link">clear all filters</button>.</p>
     </div>
   `;
 }
 
-// Filtering
-function applyFilters() {
-  try {
-    if (!cardTypeFilter || !rewardTypeFilter || !annualFeeFilter) {
-      console.warn('Filter elements not available');
-      return;
-    }
-    
-    const typeFilter = cardTypeFilter.value;
-    const rewardFilter = rewardTypeFilter.value;
-    const feeFilter = annualFeeFilter.value;
-    const currency = AppState.currency;
-    
-    let filteredCards = cryptoCards.filter(card => {
-      // Type filter
-      if (typeFilter !== 'all' && card.type !== typeFilter) {
-        return false;
-      }
-      
-      // Reward filter
-      if (rewardFilter !== 'all' && card.rewardType !== rewardFilter) {
-        return false;
-      }
-      
-      // Annual fee filter
-      if (feeFilter === 'no-fee' && card.annualFee[currency] > 0) {
-        return false;
-      }
-      if (feeFilter === 'low-fee' && card.annualFee[currency] >= 100) {
-        return false;
-      }
-      
-      return true;
-    });
-    
-    // Sort by score (highest first)
-    filteredCards.sort((a, b) => (b.score || 0) - (a.score || 0));
-    
-    renderCards(filteredCards);
-  } catch (error) {
-    console.error('Error applying filters:', error);
-  }
+// Additional Functions
+function clearAllFilters() {
+  AppState.filters = {
+    type: 'all',
+    rewards: 'all',
+    annualFee: 'all'
+  };
+  updateFiltersUI();
+  applyFiltersWithURL();
+}
+
+function showCardDetails(cardId) {
+  const card = cryptoCards.find(c => c.id === cardId);
+  if (!card) return;
+  
+  // For now, log details - could be expanded to show modal
+  console.log('Card details:', card);
+  trackCardClick(card.name, 'details');
 }
 
 // Analytics
 function trackCardClick(cardName, action) {
   console.log(`Card interaction: ${cardName} - ${action}`);
   
-  // Send to analytics service
   if (typeof gtag !== 'undefined') {
     gtag('event', 'card_interaction', {
       'card_name': cardName,
       'action': action,
-      'language': AppState.language,
-      'currency': AppState.currency
+      'page_location': window.location.href
     });
   }
-  
-  return false; // Prevent default for demo
+}
+
+function trackFilterChange() {
+  if (typeof gtag !== 'undefined') {
+    gtag('event', 'filter_change', {
+      'type_filter': AppState.filters.type,
+      'rewards_filter': AppState.filters.rewards,
+      'fee_filter': AppState.filters.annualFee
+    });
+  }
 }
 
 // Smooth Scrolling
@@ -704,12 +696,122 @@ function setupSmoothScrolling() {
           behavior: 'smooth',
           block: 'start'
         });
-        
-        // Close mobile nav if open
-        closeMobileNav();
       }
     });
   });
+}
+
+// Comparison Table
+function renderComparisonTable() {
+  const tbody = document.getElementById('comparison-tbody');
+  if (!tbody) return;
+  
+  // Get top 8 cards for comparison table
+  const topCards = cryptoCards
+    .sort((a, b) => b.score - a.score)
+    .slice(0, 8);
+  
+  tbody.innerHTML = topCards.map(card => {
+    return `
+      <tr class="comparison-row" data-card="${card.id}">
+        <td class="sticky-col product-cell" onclick="copyCell(this)">
+          <div class="product-info">
+            <strong>${escapeHtml(card.name)}</strong>
+            <div class="score-chip ${getScoreClass(card.score)}">${card.score}</div>
+          </div>
+        </td>
+        <td class="copyable" onclick="copyCell(this)">${card.rewardsRate}% ${card.rewardsType}</td>
+        <td class="copyable" onclick="copyCell(this)">${card.type === 'credit' ? 'N/A' : '0.5-1.5%'}</td>
+        <td class="copyable" onclick="copyCell(this)">${card.annualFee > 0 ? '$2-5' : 'Free'}</td>
+        <td class="copyable" onclick="copyCell(this)">$${card.annualFee}</td>
+        <td class="copyable" onclick="copyCell(this)">✓ Yes</td>
+        <td class="copyable" onclick="copyCell(this)">${getAvailability(card)}</td>
+        <td class="copyable" onclick="copyCell(this)">${getFundingMethods(card)}</td>
+      </tr>
+    `;
+  }).join('');
+}
+
+function getAvailability(card) {
+  // Simplified availability based on card type
+  const regions = {
+    'coinbase-card': 'US',
+    'crypto-com-visa': 'US, EU, Asia',
+    'blockfi-rewards': 'US',
+    'gemini-credit': 'US',
+    'bitpay-card': 'Global',
+    'nexo-card': 'EU, 30+ countries',
+    'binance-visa': 'EU, Asia',
+    'uphold-card': 'US, EU',
+    'wirex-card': 'EU, UK',
+    'swipe-card': 'Limited regions',
+    'crypto-ruby-steel': 'US, EU, Asia',
+    'fold-card': 'US'
+  };
+  return regions[card.id] || 'Check website';
+}
+
+function getFundingMethods(card) {
+  if (card.type === 'credit') {
+    return 'Credit limit';
+  }
+  if (card.id.includes('bitpay') || card.id.includes('uphold')) {
+    return 'Crypto wallet';
+  }
+  return 'Bank/Crypto';
+}
+
+function copyCell(cell) {
+  const text = cell.textContent.trim();
+  
+  navigator.clipboard.writeText(text).then(() => {
+    // Show copy feedback
+    const originalContent = cell.innerHTML;
+    cell.innerHTML = `<span class="copy-success">Copied!</span>`;
+    cell.classList.add('copied');
+    
+    setTimeout(() => {
+      cell.innerHTML = originalContent;
+      cell.classList.remove('copied');
+    }, 1500);
+    
+    // Track analytics
+    trackCopyEvent(text);
+  }).catch(err => {
+    console.error('Failed to copy text:', err);
+    // Fallback for older browsers
+    fallbackCopyTextToClipboard(text);
+  });
+}
+
+function fallbackCopyTextToClipboard(text) {
+  const textArea = document.createElement('textarea');
+  textArea.value = text;
+  textArea.style.top = '0';
+  textArea.style.left = '0';
+  textArea.style.position = 'fixed';
+  
+  document.body.appendChild(textArea);
+  textArea.focus();
+  textArea.select();
+  
+  try {
+    document.execCommand('copy');
+    console.log('Fallback: Text copied to clipboard');
+  } catch (err) {
+    console.error('Fallback: Could not copy text:', err);
+  }
+  
+  document.body.removeChild(textArea);
+}
+
+function trackCopyEvent(text) {
+  if (typeof gtag !== 'undefined') {
+    gtag('event', 'table_cell_copy', {
+      'copied_text': text,
+      'page_location': window.location.href
+    });
+  }
 }
 
 // Utility Functions
@@ -725,70 +827,13 @@ function escapeHtml(text) {
   return text.replace(/[&<>"']/g, m => map[m]);
 }
 
-function updateUI() {
-  // Update any additional UI elements based on current state
-  updateLanguageButtons();
-  updateCurrencyButtons();
-}
-
-// Accessibility
-function announceToScreenReader(message) {
-  const announcement = document.createElement('div');
-  announcement.setAttribute('aria-live', 'polite');
-  announcement.setAttribute('aria-atomic', 'true');
-  announcement.className = 'sr-only';
-  announcement.textContent = message;
-  
-  document.body.appendChild(announcement);
-  
-  setTimeout(() => {
-    document.body.removeChild(announcement);
-  }, 1000);
-}
-
-// Performance: Intersection Observer for animations
-function setupIntersectionObserver() {
-  if ('IntersectionObserver' in window) {
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('fade-in');
-          observer.unobserve(entry.target);
-        }
-      });
-    }, {
-      threshold: 0.1,
-      rootMargin: '0px 0px -50px 0px'
-    });
-    
-    // Observe learning cards
-    document.querySelectorAll('.learning-card').forEach(card => {
-      observer.observe(card);
-    });
-  }
-}
-
-// Initialize intersection observer after DOM is loaded
-document.addEventListener('DOMContentLoaded', setupIntersectionObserver);
-
-// Handle browser back/forward navigation
-window.addEventListener('popstate', function(e) {
-  if (e.state) {
-    if (e.state.language) setLanguage(e.state.language);
-    if (e.state.currency) setCurrency(e.state.currency);
-    if (e.state.theme) setTheme(e.state.theme);
-  }
-});
-
-// Export for potential testing
+// Export for testing
 if (typeof module !== 'undefined' && module.exports) {
   module.exports = {
     AppState,
     cryptoCards,
-    setTheme,
-    setLanguage,
-    setCurrency,
+    getFilteredCards,
     renderCards,
-    applyFilters
+    renderComparisonTable
   };
 }
